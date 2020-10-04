@@ -1,0 +1,22 @@
+autocmd vimenter * colorscheme gruvbox
+autocmd vimenter * hi SpellBad gui=undercurl guisp=#fb4934
+autocmd vimenter * hi SpellCap gui=undercurl guisp=#83a598
+
+set background=dark
+set guifont=Consolas:h11:cEASTEUROPE:qDRAFT
+
+"Ukryj paski przewijania po prawej/lewej stronie okna:
+set guioptions-=r | set guioptions-=l | set guioptions-=L
+
+" Informacja o aktualnym trybie (np. "-- INSERT --") nie bêdzie
+" pisana wyt³uszczon¹ czcionka
+highlight ModeMsg gui=NONE
+
+" Podkreœlaj wiersz, w którym znajduje siê kursor
+" hi Cursor guifg=fg guibg=Orchid
+" hi CursorLine guibg=NONE gui=underline
+" set cursorline
+
+" Kursor nie miga w trybie normalnym
+" set guicursor+=n:blinkon0
+

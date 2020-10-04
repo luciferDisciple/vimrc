@@ -1,0 +1,54 @@
+call plug#begin()
+Plug 'junegunn/vim-plug'
+Plug 'vimwiki/vimwiki'
+Plug 'morhetz/gruvbox'
+call plug#end()
+
+" Traktuj polskie znaki diakrytyczne jak czêœci s³owa
+if &encoding == "cp1250"
+	set iskeyword+=185,230,234,179,241,243,156,159,191,165,198,202,163
+	set iskeyword+=209,211,140,143,175
+endif
+
+syntax on
+
+" Rozdzielaj zdania dwoma spacjami
+set cpoptions+=J
+
+" Szybkie wychodzenie z trybu wstawiania
+inoremap jj <Esc>
+
+" Skrót do wklejania aktualnej daty w trybie NORMAL i INSERT
+nmap <F5> "=strftime("%F")<CR>P
+imap <F5> <C-R>=strftime("%F")<CR>
+" Otwórz aktywny bufor w kodowaniu UTF-8
+nmap <F8> :e ++enc=utf8<CR>
+
+" Skocz do nastêpnego <++> w tekœcie i wejdŸ do INSERT
+" Mnemonika <C-J>: 'j' od 'jump'
+imap <C-j> <Esc><Backspace>/<++><Return>xxxxi
+
+" Wyœwietlaj informacjê o pozycji kursora w pliku
+set ruler
+
+" Wyœwietlaj wprowadzane sekwencje klawiszy na dole ekranu.
+set showcmd
+
+language messages en
+
+" Podœwietl spacje, je¿eli s¹ na koñcu wiersza
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" Wykonaj aktualnie edytowany skrypt (:w nie jest konieczne)
+" https://stackoverflow.com/a/39996978/13168106
+autocmd FileType python nnoremap <buffer> <F9> :update<bar>term python %<CR>
+autocmd FileType ruby nnoremap <buffer> <F9> :update<bar>term ruby %<CR>
+
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType ruby setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
