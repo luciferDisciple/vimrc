@@ -27,6 +27,7 @@ nmap <F8> :e ++enc=utf8<CR>
 " Skocz do nastêpnego <++> w tekœcie i wejdŸ do INSERT
 " Mnemonika <C-J>: 'j' od 'jump'
 inoremap <C-j> <Esc><Backspace>/<++><Return>cf>
+nmap <C-j> i<C-j>
 
 " Wyœwietlaj informacjê o pozycji kursora w pliku
 set ruler
