@@ -38,6 +38,14 @@ set showcmd
 set listchars=tab:\|\ ,trail:·,nbsp:·
 set list
 
+" vimwiki
+let wiki = {}
+let wiki.name = 'Personal'
+let wiki.path = '~/vimwiki/'
+let wiki.list_margin = 0
+
+let g:vimwiki_list = [wiki]
+
 language messages en
 
 " Podœwietl spacje, je¿eli s¹ na koñcu wiersza
