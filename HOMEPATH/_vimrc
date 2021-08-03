@@ -26,7 +26,7 @@ nmap <F8> :e ++enc=utf8<CR>
 
 " Skocz do nastêpnego <++> w tekœcie i wejdŸ do INSERT
 " Mnemonika <C-J>: 'j' od 'jump'
-inoremap <C-j> <Esc>/<++><Return>cf>
+inoremap <C-j> <Esc>/<++><Return>"_cf>
 nmap <C-j> i<C-j>
 
 " Zamieñ inicja³ ka¿dego wyrazu na du¿¹ literê (Title Case)
