@@ -62,5 +62,7 @@ autocmd FileType python nnoremap <buffer> <F9> :update<bar>term python %<CR>
 autocmd FileType ruby nnoremap <buffer> <F9> :update<bar>term ruby %<CR>
 
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType ruby setlocal expandtab shiftwidth=4 softtabstop=4
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType ruby setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType vimwiki
+    \ setlocal enc=utf8 nowrap tw=79 expandtab shiftwidth=4 softtabstop=4
