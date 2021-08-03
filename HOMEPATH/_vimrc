@@ -33,6 +33,9 @@ nmap <C-j> i<C-j>
 " Szybka aplikacja na obecnym wierszu, w trybie normalnym: Vt
 vmap t :s/\<\(\w\)\(\S*\)/\u\1\L\2/g<CR>
 
+" Wstaw spacjê nie³ami¹c¹ (ang. non-breaking space)
+inoremap <c-space> <c-k>NS
+
 " Wyœwietlaj informacjê o pozycji kursora w pliku
 set ruler
 
