@@ -36,6 +36,10 @@ vmap t :s/\<\(\w\)\(\S*\)/\u\1\L\2/g<CR>
 " Wstaw spacjê nie³ami¹c¹ (ang. non-breaking space)
 inoremap <c-space> <c-k>NS
 
+" Zamieñ wszystkie ma³e litery na du¿e litery w tekœcie dodanym podczas
+" ostatniego u¿ycia trybu wprowadzania INSERT
+nmap <leader>u `[v`]<BS>gU
+
 " Wyœwietlaj informacjê o pozycji kursora w pliku
 set ruler
 
