@@ -29,6 +29,10 @@ nmap <F8> :e ++enc=utf8<CR>
 inoremap <C-j> <Esc>/<++><Return>cf>
 nmap <C-j> i<C-j>
 
+" Zamieñ inicja³ ka¿dego wyrazu na du¿¹ literê (Title Case)
+" Szybka aplikacja na obecnym wierszu, w trybie normalnym: Vt
+vmap t :s/\<\(\w\)\(\S*\)/\u\1\L\2/g<CR>
+
 " Wyœwietlaj informacjê o pozycji kursora w pliku
 set ruler
 
