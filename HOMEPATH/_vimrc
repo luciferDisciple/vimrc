@@ -35,15 +35,18 @@ set ruler
 " Wyœwietlaj wprowadzane sekwencje klawiszy na dole ekranu.
 set showcmd
 
+set listchars=tab:\|\ ,trail:·,nbsp:·
+set list
+
 language messages en
 
 " Podœwietl spacje, je¿eli s¹ na koñcu wiersza
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+" highlight ExtraWhitespace ctermbg=red guibg=red
+" match ExtraWhitespace /\s\+$/
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" autocmd BufWinLeave * call clearmatches()
 
 " Wykonaj aktualnie edytowany skrypt (:w nie jest konieczne)
 " https://stackoverflow.com/a/39996978/13168106

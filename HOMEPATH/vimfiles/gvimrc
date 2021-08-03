@@ -12,6 +12,10 @@ set guioptions-=r | set guioptions-=l | set guioptions-=L
 " pisana wyt³uszczon¹ czcionka
 highlight ModeMsg gui=NONE
 
+" Trailing whitespace apperance
+" :h hl-SpecialKey
+autocmd vimenter * highlight SpecialKey guifg=Red guibg=NONE
+
 " Podkreœlaj wiersz, w którym znajduje siê kursor
 " hi Cursor guifg=fg guibg=Orchid
 " hi CursorLine guibg=NONE gui=underline
