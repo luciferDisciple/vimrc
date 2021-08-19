@@ -59,13 +59,8 @@ let g:vimwiki_list = [wiki]
 
 language messages en
 
-" Podœwietl spacje, je¿eli s¹ na koñcu wiersza
-" highlight ExtraWhitespace ctermbg=red guibg=red
-" match ExtraWhitespace /\s\+$/
-" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-" autocmd BufWinLeave * call clearmatches()
+" Ignoruj adresy URL podczas sprawdzania pisowni
+syn match matchURL +http[s]\?://[[:alnum:]%/_?#.-]*+ contains=@NoSpell
 
 " Wykonaj aktualnie edytowany skrypt (:w nie jest konieczne)
 " https://stackoverflow.com/a/39996978/13168106
