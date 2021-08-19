@@ -77,3 +77,5 @@ autocmd FileType ruby setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
 autocmd FileType vimwiki
     \ setlocal enc=utf8 nowrap tw=79 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType json
+    \ setlocal shiftwidth=4 tabstop=4 softtabstop=4 nowrap
