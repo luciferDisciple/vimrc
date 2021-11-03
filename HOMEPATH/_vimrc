@@ -2,6 +2,7 @@ call plug#begin()
 Plug 'junegunn/vim-plug'
 Plug 'vimwiki/vimwiki'
 Plug 'morhetz/gruvbox'
+Plug 'yegappan/mru'
 call plug#end()
 
 " Traktuj polskie znaki diakrytyczne jak czêœci s³owa
@@ -31,7 +32,7 @@ nmap <C-j> i<C-j>
 
 " Zamieñ inicja³ ka¿dego wyrazu na du¿¹ literê (Title Case)
 " Szybka aplikacja na obecnym wierszu, w trybie normalnym: Vt
-vmap t :s/\<\(\w\)\(\S*\)/\u\1\L\2/g<CR>
+vmap <leader>t :s/\<\(\w\)\(\S*\)/\u\1\L\2/g<CR>
 
 " Wstaw spacjê nie³ami¹c¹ (ang. non-breaking space)
 inoremap <c-space> <c-k>NS
@@ -60,7 +61,7 @@ let g:vimwiki_list = [wiki]
 language messages en
 
 " Ignoruj adresy URL podczas sprawdzania pisowni
-syn match matchURL +http[s]\?://[[:alnum:]%/_?#.-]*+ contains=@NoSpell
+syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
 
 " Wykonaj aktualnie edytowany skrypt (:w nie jest konieczne)
 " https://stackoverflow.com/a/39996978/13168106
