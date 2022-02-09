@@ -1,3 +1,5 @@
+set nocompatible
+
 call plug#begin()
 Plug 'junegunn/vim-plug'
 Plug 'vimwiki/vimwiki'
@@ -11,6 +13,11 @@ if &encoding == "cp1250"
 	set iskeyword+=209,211,140,143,175
 endif
 
+function XMLReformatBuffer()
+	%!xmllint --format --noent -
+	%s/&amp\;/\&/ge
+endfunction
+
 syntax on
 
 " Rozdzielaj zdania dwoma spacjami
@@ -22,6 +29,7 @@ inoremap jj <Esc>
 " Skrót do wklejania aktualnej daty w trybie NORMAL i INSERT
 nmap <F5> "=strftime("%F")<CR>P
 imap <F5> <C-R>=strftime("%F")<CR>
+imap <F6> [<C-R>=strftime("%F %H:%M")<CR>]
 " Otwórz aktywny bufor w kodowaniu UTF-8
 nmap <F8> :e ++enc=utf8<CR>
 
@@ -63,15 +71,46 @@ language messages en
 " Ignoruj adresy URL podczas sprawdzania pisowni
 syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
 
+" This plugin makes the "%" command jump to matching HTML tags,
+" if/else/endif in Vim scripts, etc.
+" h matchit-install
+packadd! matchit
+
 " Wykonaj aktualnie edytowany skrypt (:w nie jest konieczne)
 " https://stackoverflow.com/a/39996978/13168106
 autocmd FileType python nnoremap <buffer> <F9> :update<bar>term python %<CR>
-autocmd FileType ruby nnoremap <buffer> <F9> :update<bar>term ruby %<CR>
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+
+autocmd FileType xml nnoremap <buffer> <leader>f :call XMLReformatBuffer()<CR>
+let g:xml_syntax_folding=1
+autocmd FileType xml setlocal foldmethod=syntax
+autocmd FileType xml setlocal noautoindent
+autocmd FileType xml setlocal shiftwidth=4
+autocmd FileType xml setlocal tabstop=4
+autocmd FileType xml setlocal softtabstop=4
+autocmd FileType xml setlocal expandtab
+autocmd FileType xml setlocal nowrap
 
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
+
 autocmd FileType ruby setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
-autocmd FileType vimwiki
-    \ setlocal enc=utf8 nowrap tw=79 expandtab shiftwidth=4 softtabstop=4
-autocmd FileType json
-    \ setlocal shiftwidth=4 tabstop=4 softtabstop=4 nowrap
+autocmd FileType ruby nnoremap <buffer> <F9> :update<bar>term ruby %<CR>
+
+autocmd FileType vimwiki setlocal enc=utf8
+autocmd FileType vimwiki setlocal nowrap
+autocmd FileType vimwiki setlocal tw=79
+autocmd FileType vimwiki setlocal expandtab
+autocmd FileType vimwiki setlocal shiftwidth=4
+autocmd FileType vimwiki setlocal softtabstop=4
+
+autocmd FileType json setlocal shiftwidth=4
+autocmd FileType json setlocal nowrap
+autocmd FileType json setlocal tabstop=4
+autocmd FileType json setlocal softtabstop=4
+
+autocmd FileType mail setlocal linebreak spelllang=pl spell
+autocmd FileType mail nnoremap j gj
+autocmd FileType mail nnoremap k gk
+autocmd FileType mail nnoremap $ g$
+autocmd FileType mail nnoremap ^ g^
+autocmd FileType mail nnoremap 0 g0
