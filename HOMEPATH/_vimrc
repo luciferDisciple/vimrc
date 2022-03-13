@@ -4,6 +4,7 @@ call plug#begin()
 Plug 'junegunn/vim-plug'
 Plug 'vimwiki/vimwiki'
 Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', {'as':'dracula'}
 Plug 'yegappan/mru'
 call plug#end()
 

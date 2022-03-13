@@ -1,4 +1,4 @@
-autocmd vimenter * colorscheme gruvbox
+autocmd vimenter * colorscheme dracula
 autocmd vimenter * hi SpellBad gui=undercurl guisp=#fb4934
 autocmd vimenter * hi SpellCap gui=undercurl guisp=#83a598
 
