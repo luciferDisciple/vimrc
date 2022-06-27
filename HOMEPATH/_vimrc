@@ -1,4 +1,13 @@
 set nocompatible
+set runtimepath+=$HOME/vimfiles
+set cpoptions+=J " Separate sentences with two spaces
+syntax on
+" Display cursor position at the bottom of the window
+set ruler
+" Display NORMAL commands as they are being typed, at the bottom of the window
+set showcmd
+set listchars=tab:\|\ ,trail:·,nbsp:·
+set list
 
 call plug#begin()
 Plug 'junegunn/vim-plug'
@@ -8,7 +17,7 @@ Plug 'dracula/vim', {'as':'dracula'}
 Plug 'yegappan/mru'
 call plug#end()
 
-" Traktuj polskie znaki diakrytyczne jak czêœci s³owa
+" Make Polish diacritics a word-character
 if &encoding == "cp1250"
 	set iskeyword+=185,230,234,179,241,243,156,159,191,165,198,202,163
 	set iskeyword+=209,211,140,143,175
@@ -19,45 +28,30 @@ function XMLReformatBuffer()
 	%s/&amp\;/\&/ge
 endfunction
 
-syntax on
-
-" Rozdzielaj zdania dwoma spacjami
-set cpoptions+=J
-
-" Szybkie wychodzenie z trybu wstawiania
+" Quit INSERT mode, faster
 inoremap jj <Esc>
 
-" Skrót do wklejania aktualnej daty w trybie NORMAL i INSERT
+" Insert current timestamp
 nmap <F5> "=strftime("%F")<CR>P
 imap <F5> <C-R>=strftime("%F")<CR>
 imap <F6> [<C-R>=strftime("%F %H:%M")<CR>]
-" Otwórz aktywny bufor w kodowaniu UTF-8
+" Reopen current file, assuming UTF-8 encoding
 nmap <F8> :e ++enc=utf8<CR>
 
-" Skocz do nastêpnego <++> w tekœcie i wejdŸ do INSERT
-" Mnemonika <C-J>: 'j' od 'jump'
+" Jump to the next occurance of the '<++>' sequence, remove it, and
+" enter INSTERT mode
+" 'j' in the mapping stands for 'jump'
 inoremap <C-j> <Esc>:call<Space>search('<++>')<CR>"_cf>
 nmap <C-j> i<C-j>
 
-" Zamieñ inicja³ ka¿dego wyrazu na du¿¹ literê (Title Case)
-" Szybka aplikacja na obecnym wierszu, w trybie normalnym: Vt
+" Convert highlighted text to CamelCase
 vmap <leader>t :s/\<\(\w\)\(\S*\)/\u\1\L\2/g<CR>
 
-" Wstaw spacjê nie³ami¹c¹ (ang. non-breaking space)
+" Insert non-breaking space
 inoremap <c-space> <c-k>NS
 
-" Zamieñ wszystkie ma³e litery na du¿e litery w tekœcie dodanym podczas
-" ostatniego u¿ycia trybu wprowadzania INSERT
+" Convert characters, added in INSERT mode, to upper case
 nmap <leader>u `[v`]<BS>gU
-
-" Wyœwietlaj informacjê o pozycji kursora w pliku
-set ruler
-
-" Wyœwietlaj wprowadzane sekwencje klawiszy na dole ekranu.
-set showcmd
-
-set listchars=tab:\|\ ,trail:·,nbsp:·
-set list
 
 " vimwiki
 let wiki = {}
@@ -67,9 +61,9 @@ let wiki.list_margin = 0
 
 let g:vimwiki_list = [wiki]
 
-language messages en
+language messages en_US
 
-" Ignoruj adresy URL podczas sprawdzania pisowni
+" Ignore URL-s while performing spell check
 syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
 
 " This plugin makes the "%" command jump to matching HTML tags,
@@ -77,7 +71,7 @@ syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
 " h matchit-install
 packadd! matchit
 
-" Wykonaj aktualnie edytowany skrypt (:w nie jest konieczne)
+" Execute script in the current file
 " https://stackoverflow.com/a/39996978/13168106
 autocmd FileType python nnoremap <buffer> <F9> :update<bar>term python %<CR>
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
@@ -104,6 +98,7 @@ autocmd FileType vimwiki setlocal expandtab
 autocmd FileType vimwiki setlocal shiftwidth=4
 autocmd FileType vimwiki setlocal softtabstop=4
 
+autocmd FileType json setlocal expandtab
 autocmd FileType json setlocal shiftwidth=4
 autocmd FileType json setlocal nowrap
 autocmd FileType json setlocal tabstop=4
